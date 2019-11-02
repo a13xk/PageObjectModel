@@ -17,11 +17,11 @@ class ProductPage(BasePage):
         return self.browser.find_element(*ProductPageLocators.BOOK_PRICE_P).text
     #
 
-    def get_basket_message_book_title(self):
+    def get_cart_message_book_title(self):
         return self.browser.find_element(*ProductPageLocators.MESSAGE_BOOK_ADDED_TO_BASKET_TITLE).text
     #
 
-    def get_basket_message_book_price(self):
+    def get_cart_message_book_price(self):
         return self.browser.find_element(*ProductPageLocators.MESSAGE_BOOK_ADDED_TO_BASKET_PRICE).text
     #
 #

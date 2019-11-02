@@ -18,13 +18,13 @@ def links():
 
 
 @pytest.mark.parametrize(argnames='link', argvalues=links())
-def test_guest_can_add_product_to_basket(browser, link):
+def test_guest_can_add_product_to_cart(browser, link):
     # link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear"
     # link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=newYear2019"
     page = ProductPage(browser=browser, url=link)
     page.open()
     page.click_add_to_basket()
     page.solve_quiz_and_get_code()
-    assert page.get_book_title() == page.get_basket_message_book_title(), "Tile mismatch"
-    assert page.get_book_price() == page.get_basket_message_book_price(), "Price mismatch"
+    assert page.get_book_title() == page.get_cart_message_book_title(), "Tile mismatch"
+    assert page.get_book_price() == page.get_cart_message_book_price(), "Price mismatch"
 #
