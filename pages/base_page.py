@@ -2,6 +2,9 @@ import math
 
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BasePage:
@@ -13,10 +16,51 @@ class BasePage:
     #
 
     def is_element_present(self, how, what):
+        """
+        Check that element IS present on page
+        :param how: Selection method
+        :param what: Selector
+        """
         try:
             self.browser.find_element(how, what)
         except NoSuchElementException:
             return False
+        return True
+    #
+
+    def is_element_absent(self, how, what, timeout=4):
+        """
+        Within the given timeout, check that element is NOT present on page.
+        If element is found, returns False.
+        :param how: Selection method
+        :param what: Selector
+        :param timeout: Timeout
+        """
+        try:
+            WebDriverWait(driver=self.browser,
+                          timeout=timeout).until(method=EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return True
+
+        return False
+    #
+
+    def is_disappeared(self, how, what, timeout=4):
+        """
+        Within given timeout, check that element has disappeared from page.
+        In element is still on the page, returns False
+        :param how: Selection method
+        :param what: Selector
+        :param timeout: Timeout
+        """
+        try:
+            WebDriverWait(driver=self.browser,
+                          timeout=timeout,
+                          poll_frequency=1,
+                          ignored_exceptions=TimeoutException).until_not(EC.presence_of_element_located((how, what)))
+        except TimeoutException:
+            return False
+
         return True
     #
 

@@ -24,4 +24,14 @@ class ProductPage(BasePage):
     def get_cart_message_book_price(self):
         return self.browser.find_element(*ProductPageLocators.MESSAGE_BOOK_ADDED_TO_BASKET_PRICE).text
     #
+
+    def should_not_be_success_message(self):
+        assert self.is_element_absent(*ProductPageLocators.SUCCESS_MESSAGE_DIV1) and \
+               self.is_element_absent(*ProductPageLocators.SUCCESS_MESSAGE_DIV2), "Success message is present, but must be absent"
+    #
+
+    def success_message_should_disappear(self):
+        assert (self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE_DIV1) and
+                self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE_DIV1)), "Success message must disappear, but is still on the page"
+    #
 #

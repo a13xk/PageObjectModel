@@ -21,4 +21,6 @@ class ProductPageLocators:
     BOOK_PRICE_P = (By.CSS_SELECTOR, ".product_main > p.price_color")
     MESSAGE_BOOK_ADDED_TO_BASKET_TITLE = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
     MESSAGE_BOOK_ADDED_TO_BASKET_PRICE = (By.CSS_SELECTOR, "#messages > div:nth-child(3) > div > p > strong")
+    SUCCESS_MESSAGE_DIV1 = (By.CSS_SELECTOR, "#messages > div:nth-child(1)")
+    SUCCESS_MESSAGE_DIV2 = (By.CSS_SELECTOR, "#messages > div:nth-child(2)")
 #
