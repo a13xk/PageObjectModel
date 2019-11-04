@@ -17,7 +17,6 @@ class TestLoginFromMainPage:
 
         # Assertions
         login_page.should_be_login_page()
-
     #
 
     def test_login_link_available_for_guest(self, browser):
