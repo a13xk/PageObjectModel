@@ -30,6 +30,18 @@ class LoginPage(BasePage):
         assert self.is_element_present(*LoginPageLocators.REGISTER_FORM_PASSWORD_CONFIRM), "Register form confirm password field not found"
     #
 
+    @classmethod
+    def generate_fake_email(cls):
+        fake = Faker()
+        return fake.email()
+    #
+
+    @classmethod
+    def generate_fake_password(cls, password_length: int = 16):
+        fake = Faker()
+        return fake.password(length=password_length, special_chars=True, digits=True, upper_case=True, lower_case=True)
+    #
+
     def register_new_user(self, email, password):
         email_field = self.browser.find_element(*LoginPageLocators.REGISTER_FORM_EMAIL)
         email_field.send_keys(email)
