@@ -1,6 +1,3 @@
-import os
-import random
-import string
 import time
 
 import pytest
@@ -108,11 +105,10 @@ class TestUserAddToCartFromProductPage:
         page.go_to_login_page()
 
         login_page = LoginPage(browser=browser, url=browser.current_url)
+        login_page.should_be_login_page()
 
-        fake_email = f"{str(time.time())}@fakemail.org"
-        chars = string.ascii_letters + string.digits
-        random.seed = (os.urandom(1024))
-        fake_password = ''.join(random.choice(chars) for _ in range(10))
+        fake_email = LoginPage.generate_fake_email()
+        fake_password = LoginPage.generate_fake_password()
 
         time.sleep(1)
         login_page.register_new_user(email=fake_email,

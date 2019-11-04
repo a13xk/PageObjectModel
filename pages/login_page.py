@@ -1,3 +1,5 @@
+from faker import Faker
+
 from .base_page import BasePage
 from .locators import LoginPageLocators
 
@@ -42,4 +44,18 @@ class LoginPage(BasePage):
         register_button.click()
         pass
     #
+
+    @classmethod
+    def generate_fake_email(cls):
+        fake = Faker()
+        email = fake.email()
+        return email
+    #
+
+    @classmethod
+    def generate_fake_password(cls):
+        fake = Faker()
+        password = fake.password(length=10, special_chars=True, digits=True, upper_case=True, lower_case=True)
+        return password
+
 #
